@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome</title>
+    <title>My Article Collection</title>
     <style>p.indent{ padding-left: 1.8em; }</style>
   </head>
 
   <body>
 
-    <h1><%= @collection.name %>'s article collection</h1>
+    <h1>Article Collection: <%= @collection.name %></h1>
 
     <% @collection.articles.all.each.with_index(1) do |article, index| %>
       <h3><p><a href="/articles/<%= article.slug %>"> Article <%= index %>:</a></p></h3>
@@ -17,6 +17,12 @@
       <p class="indent"><strong>Journal: </strong><%= article.journal.name %></p>
       <br>
     <% end %>
+
+    <% if current_user == @collection %>
+      <h2><a href="/articles/new">Add a New Article</a></h2>
+    <% end %>
+    <br>
+    <h2><a href="/index">View Other Collections</a></h2>
     <br>
     <h2><a href="/logout">Log Out</a></h2>
 

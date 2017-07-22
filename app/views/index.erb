@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Log In or Sign Up</title>
+    <title>All Collections</title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
   </head>
 
   <body>
-    <% if flash.has?(:message) %>
-    <h2><font color="red">  <%= flash[:message] %></font> </h2>
+
+    <h1>Choose a Collection to View</h1>
+
+    <% Collection.all.each.with_index(1) do |collection, index| %>
+      <h2><p><%= index %>: <a href="/collections/<%= collection.slug %>"> <%= collection.name %></a></p></h2>
+      <br>
     <% end %>
+    <br>
+    <h2><a href="/">View Your Collection</a></h2>
 
-    <h1>Sign Up or Log In</h1>
-
-    <break></break>
-    <break></break>
-
-
-
-    <h2>Log In</h2>
-    <form action="/login" method="post">
-      <p><label>Username: <input type="text" name="name"</label></p>
-      <p><label>Password: <input type="text" name="password"</label></p>
-      <p><button type="submit" value="submit">Log In</button>
-    </form>
-
-    <break></break>
-
-    <h2>Sign Up</h2>
-    <form action="/signup" method="post">
-      <p><label>Username: <input type="text" name="name"</label></p>
-      <p><label>Password: <input type="text" name="password"</label></p>
-      <p><button type="submit" value="submit">Sign Up</button>
-    </form>
   </body>
 </html

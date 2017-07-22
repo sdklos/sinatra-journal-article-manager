@@ -6,8 +6,8 @@ module Slugifiable
   end
 
   module ClassMethods
-    def self.find_by_slug(slug)
-      @@name = slug.gsub("-", " ")
+    def find_by_slug(slug)
+      @@name = "#{slug}".gsub("-", " ")
       self.all.detect {|var| var.name.downcase == @@name}
     end
   end
