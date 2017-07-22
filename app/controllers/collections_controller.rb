@@ -1,14 +1,13 @@
 class CollectionsController < ApplicationController
 
   get "/collections/:slug" do
-    if logged_in?
-
-      @collection = current_user
-      erb :'/collections/show'
-    else
-      redirect("/")
-    end
+      @collection = Collection.find_by_slug(params[:slug])
+      if @collection
+        erb :'/collections/show'
+      else
+        flash[:message] = "No collection with that name exists."
+        redirect("/")
+      end
   end
-
 
 end

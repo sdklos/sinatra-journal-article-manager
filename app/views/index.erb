@@ -14,7 +14,11 @@
       <br>
     <% end %>
     <br>
-    <h2><a href="/">View Your Collection</a></h2>
+    <% if logged_in? %>
+      <h2><a href="/collections/<%= current_user.slug %>/edit">Edit Your Collection</a></h2>
+    <% else %>
+      <h2><a href="/home">Log In or Create Account To Edit Your Collection</a></h2>
+    <% end %>
 
   </body>
 </html

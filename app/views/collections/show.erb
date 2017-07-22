@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome</title>
+    <title>My Article Collection</title>
     <style>p.indent{ padding-left: 1.8em; }</style>
   </head>
 
   <body>
 
-    <h1><%= @collection.name %>'s article collection</h1>
+    <h1>Article Collection: <%= @collection.name %></h1>
 
     <% @collection.articles.all.each.with_index(1) do |article, index| %>
-      <h3><p><a href="/articles/<%= article.slug %>"> Article <%= index %>:</a></p></h3>
-      <p class="indent"><strong>Title: </strong><%= article.name %></p>
+      <h3><p><a href="/articles/<%= article.slug %>"><%= article.name %></a></p></h3>
       <p class="indent"><strong>Year: </strong><%= article.year %></p>
       <p class="indent"><strong>Author: </strong><%= article.author.name %></p>
       <p class="indent"><strong>Journal: </strong><%= article.journal.name %></p>
       <br>
     <% end %>
+    <br>
+    <% if logged_in? %>
+      <% if current_user == @collection %>
+        <h2><a href="/articles/new">Add a New Article</a></h2>
+      <% end %>
+    <% end %>
+    <br>
+    <h2><a href="/index">View Other Collections</a></h2>
     <br>
     <h2><a href="/logout">Log Out</a></h2>
 
