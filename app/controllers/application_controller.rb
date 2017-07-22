@@ -14,11 +14,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    erb :index
+  end
+
+  get '/home' do
     if logged_in?
       redirect("/collections/#{current_user.slug}")
     else
       erb :home
     end
+  end
+
+  get '/index' do
+    erb :index
   end
 
   post '/signup' do
@@ -46,10 +54,6 @@ end
   get '/logout' do
     session.clear
     redirect("/")
-  end
-
-  get '/index' do
-    erb :index
   end
 
 helpers do
