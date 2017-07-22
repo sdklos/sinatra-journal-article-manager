@@ -38,7 +38,7 @@ end
       session[:user_id] = @collection.id
       redirect("/collections/#{@collection.slug}")
     else
-      flash[:message] = "E-mail address and password do not match."
+      flash[:message] = "Username and Password do not match."
       erb:index
     end
   end

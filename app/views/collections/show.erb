@@ -2,15 +2,23 @@
 <html>
   <head>
     <title>Welcome</title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
   </head>
 
   <body>
 
-    <h1><%= @collection.name %>'s collection</h1>
+    <h1><%= @collection.name %>'s article collection</h1>
 
-    <break></break>
-
-    <h4><a href="/logout">Log Out</a></h4>
+    <% @collection.articles.all.each.with_index(1) do |article, index| %>
+      <h3><p><a href="/articles/<%= article.slug %>"> Article <%= index %>:</a></p></h3>
+      <p class="indent"><strong>Title: </strong><%= article.name %></p>
+      <p class="indent"><strong>Year: </strong><%= article.year %></p>
+      <p class="indent"><strong>Author: </strong><%= article.author.name %></p>
+      <p class="indent"><strong>Journal: </strong><%= article.journal.name %></p>
+      <br>
+    <% end %>
+    <br>
+    <h2><a href="/logout">Log Out</a></h2>
 
   </body>
 </html
