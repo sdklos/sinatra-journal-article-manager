@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @article.name %></title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
+  </head>
+
+  <body>
+
+    <h1><%= @article.name %></h1>
+
+      <p><strong>Title: </strong><%= @article.name %></p>
+      <p><strong>Year: </strong><%= @article.year %></p>
+      <p><strong>Author: </strong><%= @article.author.name %></p>
+      <p><strong>Journal: </strong><%= @article.journal.name %></p>
+      <p><%= @article.details %></p>
+      <br>
+    <% end %>
+    <br>
+    <h2><a href="/logout">Log Out</a></h2>
+
+  </body>
+</html
