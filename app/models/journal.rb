@@ -1,5 +1,8 @@
 class Journal < ActiveRecord::Base
-  validate :name, presence: true
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
+
+  validates_presence_of :name
 
   has_many :articles
   has_many :collections, through: :articles

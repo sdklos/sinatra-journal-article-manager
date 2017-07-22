@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721211020) do
+ActiveRecord::Schema.define(version: 20170722172814) do
 
   create_table "articles", force: :cascade do |t|
     t.integer "collection_id"
     t.integer "journal_id"
-    t.string  "title"
     t.integer "year"
     t.integer "author_id"
+    t.string  "name"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170721211020) do
 
   create_table "collections", force: :cascade do |t|
     t.string "password_digest"
-    t.string "user_email"
+    t.string "name"
   end
 
   create_table "journals", force: :cascade do |t|

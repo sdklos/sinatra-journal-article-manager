@@ -1,14 +1,14 @@
 module Slugifiable
   module InstanceMethods
     def slug
-      self.username.downcase.gsub(" ", "-")
+      self.name.downcase.gsub(" ", "-")
     end
   end
 
   module ClassMethods
     def self.find_by_slug(slug)
-      @@username = slug.gsub("-", " ")
-      User.all.detect {|user| user.username.downcase == @@username}
+      @@name = slug.gsub("-", " ")
+      self.all.detect {|var| var.name.downcase == @@name}
     end
   end
 end

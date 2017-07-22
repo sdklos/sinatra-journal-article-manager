@@ -1,5 +1,8 @@
 class Article < ActiveRecord::Base
-  validates :title, :year, presence: true
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
+
+  validates_presence_of :name, :year
 
   belongs_to :collection
   belongs_to :journal

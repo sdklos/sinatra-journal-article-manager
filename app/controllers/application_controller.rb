@@ -15,37 +15,42 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     if logged_in?
-      erb :'collection/home'
+      redirect("/collections/:slug")
     else
       erb :index
+    end
   end
 
   post '/signup' do
-    if Collection.create[params].valid?
-      @collection = Collection.create(params)
-      session[:user_id] = @collection.id
-      redirect("/collections/:slug")
-    else
-      flash[:message] = "Please enter a valid e-mail address and password"
-      erb :index
-   end
+    @collection = Collection.create(params)
+  if @collection.valid?
+    session[:user_id] = @collection.id
+    redirect("/collections/:slug")
+  else
+   flash[:message] = "Please enter a valid username and password"
+   erb :index
   end
+end
 
   post '/login' do
-    @collection = Collection.find_by(email: params["email"])
-    if @collection.valid?
+    @collection = Collection.find_by(name: params["name"])
+    if @collection && @collection.authenticate(params["password"])
       session[:user_id] = @collection.id
-      redirect("/collections/:slug")
+      redirect("/collections/#{@collection.slug}")
     else
       flash[:message] = "E-mail address and password do not match."
       erb:index
     end
+  end
 
-end
+  get '/logout' do
+    session.clear
+    redirect("/")
+  end
 
 helpers do
     def logged_in?
-      !!current_user
+      !!session[:user_id]
     end
 
     def current_user

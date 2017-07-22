@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign Up or Log In</title>
+    <title>Log In or Sign Up</title>
   </head>
 
   <body>
     <% if flash.has?(:message) %>
-      <%= flash[:message] %>
+    <h2><font color="red">  <%= flash[:message] %></font> </h2>
     <% end %>
 
     <h1>Sign Up or Log In</h1>
 
+    <break></break>
     <break></break>
 
 
 
     <h2>Log In</h2>
     <form action="/login" method="post">
-      <p><label>Email: <input type="text" name="email"</label></p>
+      <p><label>Username: <input type="text" name="name"</label></p>
       <p><label>Password: <input type="text" name="password"</label></p>
       <p><button type="submit" value="submit">Log In</button>
     </form>
@@ -26,7 +27,7 @@
 
     <h2>Sign Up</h2>
     <form action="/signup" method="post">
-      <p><label>Email: <input type="text" name="email"</label></p>
+      <p><label>Username: <input type="text" name="name"</label></p>
       <p><label>Password: <input type="text" name="password"</label></p>
       <p><button type="submit" value="submit">Sign Up</button>
     </form>
