@@ -15,7 +15,7 @@
     <% end %>
     <br>
     <% if logged_in? %>
-      <h2><a href="/collections/<%= current_user.slug %>/edit">Edit Your Collection</a></h2>
+      <h2><a href="/collections/<%= current_user.slug %>">Edit Your Collection</a></h2>
     <% else %>
       <h2><a href="/home">Log In or Create Account To Edit Your Collection</a></h2>
     <% end %>
