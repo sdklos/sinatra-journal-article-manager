@@ -10,7 +10,7 @@
     <h1>Article Collection: <%= @collection.name %></h1>
 
     <% @collection.articles.all.each.with_index(1) do |article, index| %>
-      <h3><p><a href="/articles/<%= article.slug %>"><%= article.name %></a></p></h3>
+      <h3><p><a href="/articles/<%= article.id %>"><%= article.name %></a></p></h3>
       <p class="indent"><strong>Year: </strong><%= article.year %></p>
       <p class="indent"><strong>Author: </strong><%= article.author.name %></p>
       <p class="indent"><strong>Journal: </strong><%= article.journal.name %></p>

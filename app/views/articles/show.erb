@@ -13,11 +13,11 @@
       <p><strong>Year: </strong><%= @article.year %></p>
       <p><strong>Author: </strong><%= @article.author.name %></p>
       <p><strong>Journal: </strong><%= @article.journal.name %></p>
-      <p><%= @article.details %></p>
+      <p><strong>Details: </strong><%= @article.details %></p>
       <br>
     <h2>
       <% if logged_in? && current_user.articles.include?(@article) %>
-        <h2><a href="/articles/<%= @article.slug %>/edit">Edit this Article</a></h2>
+        <h2><a href="/articles/<%= @article.id %>/edit">Add Details About this Article</a></h2>
         <br>
         <h2><a href="/logout">Log Out</a></h2>
       <% elsif logged_in? %>

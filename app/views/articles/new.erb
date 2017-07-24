@@ -6,7 +6,9 @@
   </head>
 
   <body>
-
+    <% if flash.has?(:message) %>
+    <h2><font color="red">  <%= flash[:message] %></font> </h2>
+    <% end %>
     <h1>Choose an Article to Add to Your Collection</h1>
     <% Article.all.each do |article| %>
       <% unless current_user.articles.include?(article) %>
@@ -21,20 +23,24 @@
       <h2><label>Year: <input type="integer" name="article[year]" id="article_year"></label><h2>
       <h2><label>Choose an Author:</label></h2>
         <% Author.all.each do |author| %>
-          <p class="indent"><input type="radio" name="author[name]" id=<% author.id %> value=<% author.id %>><%= author.name %></input></p>
+          <p class="indent"><input type="radio" name="article[author_id]" id=author_<%= author.id %> value=<%= author.id %>><%= author.name %></input></p>
         <% end %>
       <h2><label>Or Enter a New Author:</label></h2>
-      <p class="indent"><label><strong>First Name:</strong> <input type="text" name="author_first_name" id="author.id"></input></label>
-      <p class="indent"><label><strong>Last Name:</strong> <input type="text" name="author_last_name" id="author.id"></input></label>
+      <p class="indent"><label><strong>First Name:</strong> <input type="text" name=author[author_first_name] id="new_author_first_name"></label></p>
+      <p class="indent"><label><strong>Last Name:</strong> <input type="text" name=author[author_last_name] id="new_author_last_name"></label></p>
       <br>
       <h2><label>Choose a Journal:</label></h2>
         <% Journal.all.each do |journal| %>
-          <p class="indent"><input type="radio" name="journal_name" id=<% journal.id %> value=<% journal.id %>><%= journal.name %></input></p>
+          <p class="indent"><input type="radio" name="article[journal_id]" id=journal_<%= journal.id %> value=<%= journal.id %>><%= journal.name %></input></p>
         <% end %>
       <h2><label>Or Enter a New Journal:</label></h2>
-      <p class="indent"><label><strong>Journal Name:</strong> <input type="text" name="journal_name" id="journal.id"></input></label>
+      <p class="indent"><label><strong>Journal Name:</strong> <input type="text" name="journal_name" id="new_journal"></label></p>
       <br>
+      <h2><label>Add Any Notes About this Article Here:</label></h2>
+      <p><label><textarea name="details" cols="40" rows="40"></textarea></label></p>
       <p><button type="submit" value="submit">Submit</button>
+
+
 
     </form>
 
