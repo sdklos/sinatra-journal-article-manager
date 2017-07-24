@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Articles</title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
+  </head>
+
+  <body>
+
+    <h1>Articles</h1>
+
+    <% Article.all.each.with_index(1) do |article, index| %>
+      <h3><p><%= index %>: <a href="/articles/<%= article.slug %>"><%= article.name %></a></p></h3>
+      <p class="indent"><strong>Year: </strong><%= article.year %></p>
+      <p class="indent"><strong>Author: </strong><a href="/authors/<%= article.author.slug %>"><%= article.author.name %></a></p>
+      <p class="indent"><strong>Journal: </strong><a href="/journals/<%= article.journal.slug %>"><%= article.journal.name %></a></p>
+      <br>
+    <% end %>
+    <br>
+    <h2><a href="/collections">View All Collections</a></h2>
+    <br>
+    <h2><a href="/journals">View All Journals</a></h2>
+    <br>
+    <h2><a href="/authors">View All Authors</a></h2>
+    <br>
+    <% if logged_in? %>
+      <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>
+      <br>
+      <h2><a href="/logout">Log Out</a></h2>
+    <% else %>
+      <h2><a href="/">Log In or Create Account For More Options</a></h2>
+    <% end %>
+  </body>
+</html

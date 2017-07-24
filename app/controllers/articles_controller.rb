@@ -32,9 +32,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  get "/articles/:id" do
-    @article = Article.find(params[:id])
-    if @journal
+  get "/articles/:slug" do
+    @article = Article.find_by_slug(params[:slug])
+    if @article
       erb :"/articles/show"
     else
       flash[:message] = "No article with that id exists."
@@ -43,29 +43,29 @@ class ArticlesController < ApplicationController
 
   end
 
-  get "/articles/:id/add" do
-    @article = Article.find(params[:id])
+  get "/articles/:slug/add" do
+    @article = Article.find_by_slug(params[:slug])
     current_user.articles << @article
     current_user.save
     redirect("/collections/#{current_user.slug}")
   end
 
-  get "/articles/:id/edit" do
-    @article = Article.find(params[:id])
+  get "/articles/:slug/edit" do
+    @article = Article.find_by_slug(params[:slug])
 
     erb :"/articles/edit"
   end
 
-  patch "/articles/:id" do
-    @article = Article.find(params[:id])
+  patch "/articles/:slug" do
+    @article = Article.find_by_slug(params[:slug])
     @article.details = "#{@article.details}" + "<br>" + params["additional_details"]
     binding.pry
     @article.save
-    redirect("/articles/#{@article.id}")
+    redirect("/articles/#{@article.slug}")
   end
 
-  get "/articles/:id/remove" do
-    @article = Article.find(params[:id])
+  get "/articles/:slug/remove" do
+    @article = Article.find_by_slug(params[:slug])
     current_user.articles.all.find(@article.id).delete
     current_user.save
     redirect("/collections/#{current_user.slug}")

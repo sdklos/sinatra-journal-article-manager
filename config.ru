@@ -9,4 +9,5 @@ use Rack::MethodOverride
 use ArticlesController
 use CollectionsController
 use JournalsController
+use AuthorsController
 run ApplicationController

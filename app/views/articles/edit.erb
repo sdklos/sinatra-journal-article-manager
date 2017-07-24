@@ -14,7 +14,7 @@
       <p><strong>Author: </strong><%= @article.author.name %></p>
       <p><strong>Journal: </strong><%= @article.journal.name %></p>
       <p><strong>Details: </strong><%= @article.details %></p>
-      <form action="/articles/<%=@article.id %>" method="POST">
+      <form action="/articles/<%=@article.slug %>" method="POST">
         <input type="hidden" name="_method" value="patch">
         <p><strong>Additional Details:</strong></p>
         <p><label><textarea name="additional_details" cols="40" rows="20"></textarea></label></p>

@@ -17,15 +17,15 @@
       <br>
     <h2>
       <% if logged_in? && current_user.articles.include?(@article) %>
-        <h2><a href="/articles/<%= @article.id %>/edit">Add Details About this Article</a></h2>
+        <h2><a href="/articles/<%= @article.slug %>/edit">Add Details About this Article</a></h2>
         <br>
-        <h2><a href="/articles/<%= @article.id %>/remove">Remove this Article from Your Collection</a></h2>
+        <h2><a href="/articles/<%= @article.slug %>/remove">Remove this Article from Your Collection</a></h2>
         <br>
         <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>
         <br>
         <h2><a href="/logout">Log Out</a></h2>
       <% elsif logged_in? %>
-        <h2><a href="/articles/<%= @article.id %>/add">Add this Article to Your Collection</a></h2>
+        <h2><a href="/articles/<%= @article.slug %>/add">Add this Article to Your Collection</a></h2>
         <br>
         <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>
         <br>
