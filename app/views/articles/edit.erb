@@ -7,13 +7,19 @@
 
   <body>
 
-    <h1><%= @article.name - Add Details %></h1>
+    <h1><%= @article.name %> -- Add Details </h1>
 
       <p><strong>Title: </strong><%= @article.name %></p>
       <p><strong>Year: </strong><%= @article.year %></p>
       <p><strong>Author: </strong><%= @article.author.name %></p>
       <p><strong>Journal: </strong><%= @article.journal.name %></p>
       <p><strong>Details: </strong><%= @article.details %></p>
+      <form action="/articles/<%=@article.id %>" method="POST">
+        <input type="hidden" name="_method" value="patch">
+        <p><strong>Additional Details:</strong></p>
+        <p><label><textarea name="additional_details" cols="40" rows="20"></textarea></label></p>
+        <p><button type="submit" value="submit">Submit</button>
+      </form>
       <br>
     <h2>
       <% if logged_in? && current_user.articles.include?(@article) %>

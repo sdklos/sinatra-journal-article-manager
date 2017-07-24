@@ -19,7 +19,6 @@ class ArticlesController < ApplicationController
       @article.journal_id = params["article"]["journal_id"]
     end
     @article.details = params["details"]
-    binding.pry
     if @article.author && @article.journal
       @article.save
       redirect("/collections/#{current_user.slug}")
@@ -27,20 +26,40 @@ class ArticlesController < ApplicationController
       flash[:message] = "Please provide an author and journal for your article."
       redirect("/articles/new")
     end
-
-
-
   end
+
   get "/articles/:id" do
     @article = Article.find(params[:id])
 
     erb :"/articles/show"
   end
 
+  get "/articles/:id/add" do
+    @article = Article.find(params[:id])
+    current_user.articles << @article
+    current_user.save
+    redirect("/collections/#{current_user.slug}")
+  end
+
   get "/articles/:id/edit" do
     @article = Article.find(params[:id])
 
     erb :"/articles/edit"
+  end
+
+  patch "/articles/:id" do
+    @article = Article.find(params[:id])
+    @article.details = "#{@article.details}" + "<br>" + params["additional_details"]
+    binding.pry
+    @article.save
+    redirect("/articles/#{@article.id}")
+  end
+
+  get "/articles/:id/remove" do
+    @article = Article.find(params[:id])
+    current_user.articles.all.find(@article.id).delete
+    current_user.save
+    redirect("/collections/#{current_user.slug}")
   end
 
 end
