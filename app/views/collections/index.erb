@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Collections</title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
+  </head>
+
+  <body>
+
+    <h1>Choose a Collection to View</h1>
+
+    <% Collection.all.each.with_index(1) do |collection, index| %>
+      <h2><p><%= index %>: <a href="/collections/<%= collection.slug %>"> <%= collection.name %></a></p></h2>
+      <br>
+    <% end %>
+    <br>
+    <% if logged_in? %>
+      <h2><a href="/collections/<%= current_user.slug %>">Edit Your Collection</a></h2>
+    <% else %>
+      <h2><a href="/home">Log In or Create Account To Edit Your Collection</a></h2>
+    <% end %>
+
+  </body>
+</html

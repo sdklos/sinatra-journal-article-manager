@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
 
+  get "/articles" do
+    erb :"/articles/index"
+  end
+
   get "/articles/new" do
     erb :"/articles/new"
   end
@@ -30,8 +34,13 @@ class ArticlesController < ApplicationController
 
   get "/articles/:id" do
     @article = Article.find(params[:id])
+    if @journal
+      erb :"/articles/show"
+    else
+      flash[:message] = "No article with that id exists."
+      redirect("/articles")
+    end
 
-    erb :"/articles/show"
   end
 
   get "/articles/:id/add" do
