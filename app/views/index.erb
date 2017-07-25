@@ -7,20 +7,20 @@
 
   <body>
 
-    <h1><a href="/collections">View All Collections</a></h1>
+    <h2><a href="/collections">View All Collections</a></h2>
     <br>
-    <h1><a href="/articles">View All Articles</a></h1>
+    <h2><a href="/articles">View All Articles</a></h2>
     <br>
-    <h1><a href="/journals">View All Journals</a></h1>
+    <h2><a href="/journals">View All Journals</a></h2>
     <br>
-    <h1><a href="/authors">View All Authors</a></h1>
+    <h2><a href="/authors">View All Authors</a></h2>
     <br>
     <% if logged_in? %>
-      <h1><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h1>
       <br>
-      <h1><a href="/logout">Log Out</a></h2>
+      <h1><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h1>
     <% else %>
-      <h1><a href="/home">Create a New Collection</a></h1>
+      <br>
+      <h1><a href="/home">Log In or Create a New Collection</a></h1>
     <% end %>
   </body>
 </html

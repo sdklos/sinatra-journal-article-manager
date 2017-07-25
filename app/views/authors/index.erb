@@ -11,6 +11,7 @@
 
     <% Author.all.each.with_index(1) do |author, index| %>
       <h2><p><%= index %>: <a href="/authors/<%= author.slug %>"><%= author.name %></a></p></h2>
+      <h2><p>Author's Articles:</p></h2>
       <% author.articles.all.each do |article| %>
         <h3><p class="indent"><a href="/articles/<%= article.slug %>"><%= article.name %></a></p></h3>
         <h3><p class="indent"><strong>Year: </strong><%= article.year %></p></h3>
@@ -19,11 +20,9 @@
       <% end %>
       <br>
     <% end %>
-    <h2><a href="/collections">View All Collections</a></h2>
+    <h2><a href="/authors/new">Add a New Author</a></h2>
     <br>
-    <h2><a href="/journals">View All Journals</a></h2>
-    <br>
-    <h2><a href="/authors">View All Authors</a></h2>
+    <h2><a href="/index">Main Index</a></h2>
     <br>
     <% if logged_in? %>
       <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>

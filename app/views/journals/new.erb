@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enter New Journal</title>
+    <style>p.indent{ padding-left: 1.8em; }</style>
+  </head>
+
+  <body>
+    <% if flash.has?(:message) %>
+    <h2><font color="red">  <%= flash[:message] %></font> </h2>
+    <% end %>
+    <h1>Enter New Journal</h1>
+    <form action="/journals" method="POST">
+      <p class="indent"><label><strong>Journal Name:</strong> <input type="text" name=journal_name id="new_journal"></label></p>
+      <p><button type="submit" value="submit">Submit</button>
+
+
+
+    </form>
+
+  </body>
+</html

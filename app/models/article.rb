@@ -4,7 +4,8 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :name, :year
 
-  belongs_to :collection
+  has_many :collection_articles
+  has_many :collections, through: :collection_articles
   belongs_to :journal
   belongs_to :author
 

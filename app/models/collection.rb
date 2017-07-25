@@ -6,7 +6,8 @@ class Collection < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :articles
+  has_many :collection_articles
+  has_many :articles, through: :collection_articles
   has_many :journals, through: :articles
   has_many :authors, through: :articles
 

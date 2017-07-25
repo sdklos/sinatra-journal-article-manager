@@ -7,23 +7,22 @@
 
   <body>
 
-    <h1>Authors</h1>
+    <h1>Journals</h1>
 
     <% Journal.all.each.with_index(1) do |journal, index| %>
       <h2><p><%= index %>: <a href="/journals/<%= journal.slug %>"><%= journal.name %></a></p></h2>
+      <h2><p>Articles from this Journal:</p></h3>
       <% journal.articles.all.each do |article| %>
         <h3><p class="indent"><a href="/articles/<%= article.slug %>"><%= article.name %></a></p></h3>
+        <h3><p class="indent"><strong>Author: </strong><a href="/authors/<%= article.author.slug %>"><%= article.author.name %></a></p></h3>
         <h3><p class="indent"><strong>Year: </strong><%= article.year %></p></h3>
-        <h3><p class="indent"><strong>Journal: </strong><a href="/journals/<%= article.journal.slug %>"><%= article.journal.name %></a></p></h3>
         <br>
       <% end %>
       <br>
     <% end %>
-    <h2><a href="/collections">View All Collections</a></h2>
+    <h2><a href="/journals/new">Add a New Journal</a></h2>
     <br>
-    <h2><a href="/journals">View All Journals</a></h2>
-    <br>
-    <h2><a href="/authors">View All Authors</a></h2>
+    <h2><a href="/index">Main Index</a></h2>
     <br>
     <% if logged_in? %>
       <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>

@@ -2,7 +2,10 @@
 <html>
   <head>
     <title>All Articles</title>
-    <style>p.indent{ padding-left: 1.8em; }</style>
+    <style>
+    p.indent{ padding-left: 1.8em; }
+    p.indent_more{ padding-left: 3.6em; }
+    </style>
   </head>
 
   <body>
@@ -14,16 +17,18 @@
       <p class="indent"><strong>Year: </strong><%= article.year %></p>
       <p class="indent"><strong>Author: </strong><a href="/authors/<%= article.author.slug %>"><%= article.author.name %></a></p>
       <p class="indent"><strong>Journal: </strong><a href="/journals/<%= article.journal.slug %>"><%= article.journal.name %></a></p>
-      <br>
+      <p class="indent"><strong>Collections Having this Article:
+      <% article.collections.each.with_index(1) do |collection, index| %>
+        <p class="indent_more"><a href="/collections/<%= collection.slug %>"><%= collection.name %></a></p>
+      <% end %>
     <% end %>
     <br>
-    <h2><a href="/collections">View All Collections</a></h2>
     <br>
-    <h2><a href="/journals">View All Journals</a></h2>
-    <br>
-    <h2><a href="/authors">View All Authors</a></h2>
+    <h2><a href="/index">Main Index</a></h2>
     <br>
     <% if logged_in? %>
+      <h2><a href="/articles/new">Add Articles to Your Collection</a></h2>
+      <br>
       <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>
       <br>
       <h2><a href="/logout">Log Out</a></h2>

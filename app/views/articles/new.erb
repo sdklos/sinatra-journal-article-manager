@@ -12,7 +12,7 @@
     <h1>Choose an Article to Add to Your Collection</h1>
     <% Article.all.each do |article| %>
       <% unless current_user.articles.include?(article) %>
-       <h2><a href="/articles/<%= article.slug %>/edit"><%= article.name %></a> (<%= article.author.name %>, <i><%= article.journal.name %></i>, <%= article.year %>)</h2>
+       <h2><a href="/articles/<%= article.slug %>/add"><%= article.name %></a> (<%= article.author.name %>, <i><%= article.journal.name %></i>, <%= article.year %>)</h2>
       <% end %>
     <% end %>
     <br>

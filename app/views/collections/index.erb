@@ -10,15 +10,17 @@
     <h1>Choose a Collection to View</h1>
 
     <% Collection.all.each.with_index(1) do |collection, index| %>
-      <h2><p><%= index %>: <a href="/collections/<%= collection.slug %>"> <%= collection.name %></a></p></h2>
-      <br>
+      <h2><p class="indent"><%= index %>: <a href="/collections/<%= collection.slug %>"> <%= collection.name %></a></p></h2>
     <% end %>
     <br>
+    <h2><a href="/index">Main Index</a></h2>
+    <br>
     <% if logged_in? %>
-      <h2><a href="/collections/<%= current_user.slug %>">Edit Your Collection</a></h2>
+      <h2><a href="/collections/<%= current_user.slug %>">View Your Collection</a></h2>
+      <br>
+      <h2><a href="/logout">Log Out</a></h2>
     <% else %>
       <h2><a href="/home">Log In or Create Account To Edit Your Collection</a></h2>
     <% end %>
-
   </body>
 </html

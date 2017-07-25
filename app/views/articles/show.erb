@@ -15,7 +15,10 @@
       <p><strong>Journal: </strong><%= @article.journal.name %></p>
       <p><strong>Details: </strong><%= @article.details %></p>
       <br>
-    <h2>
+      <h2><a href="/articles">Article Index</a></h2>
+      <br>
+      <h2><a href="/index">Main Index</a></h2>
+      <br>
       <% if logged_in? && current_user.articles.include?(@article) %>
         <h2><a href="/articles/<%= @article.slug %>/edit">Add Details About this Article</a></h2>
         <br>
@@ -33,9 +36,6 @@
       <% else %>
         <h2><a href="/">Log In or Create Account For More Options</a></h2>
       <% end %>
-      <br>
-      <h2><a href="/index">Collection Index</a></h2>
-
 
   </body>
 </html
